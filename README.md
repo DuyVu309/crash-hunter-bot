@@ -1,14 +1,15 @@
 # Crash Hunter Bot (Antigravity Agent Skill)
 
-Skill tự động dội bom kiểm thử (Stress Test / Monkey) để săn các lỗi tử huyệt như Crash, RAM Leak, Navigation Leak, và API DDOS.
+Skill tự động dội bom kiểm thử (Stress Test / Monkey / Fuzzing) để săn các lỗi tử huyệt như Crash, RAM Leak, Navigation Leak, và API DDOS.
+
+## Tự Động Hóa 100% (Auto-Discovery)
+Phiên bản mới nhất của Bot đã được trang bị thuật toán nội suy thông minh:
+- **Tự động nhận diện Package ID** từ `build.gradle.kts` hoặc `AndroidManifest.xml`.
+- **Tự động quét DeepLink Schemes** để tự động đẻ ra kịch bản Fuzzing DeepLink.
+- **Tự động bóc tách số dòng code** (File:Line) từ Logcat khi dự án sử dụng Timber.
 
 ## Cách Cài Đặt (Cho anh em Dev)
 
 1. Copy toàn bộ thư mục này (`SKILL.md` và `scripts/`) vào trong thư mục `.agents/skills/crash-hunter-bot/` của project hiện tại của anh em. (Tạo thư mục nếu chưa có).
-2. **CỰC KỲ QUAN TRỌNG:** Mở file `scripts/generate_tests.py` và sửa biến `APP_PKG` thành Package ID của ứng dụng mà anh em đang làm!
-   ```python
-   # TODO(Devs): Sửa cái APP_PKG này thành Package Name của App mà anh em đang làm nhé!
-   APP_PKG="com.your.package.name"
-   ```
-3. Mở IDE, chat với Antigravity AI: *"Chạy skill crash-hunter-bot"*.
-4. Đi pha ly cà phê, đợi 1.5 tiếng và quay lại xem file báo cáo `CRASH_REPORT_FINAL.md`.
+2. Mở IDE, chat với Antigravity AI: *"Chạy skill crash-hunter-bot"*.
+3. Đi pha ly cà phê, đợi Bot tự động tạo script và chạy test. Khi xong, quay lại xem file báo cáo `CRASH_REPORT_FINAL.md` kèm chỉ định chính xác dòng code gây lỗi!
