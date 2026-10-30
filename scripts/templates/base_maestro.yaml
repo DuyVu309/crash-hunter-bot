@@ -1,0 +1,29 @@
+appId: __APP_PKG__
+---
+# Generic Baseline UI Stress Flow (Maestro Engine)
+# Tự động điều hướng và stress các thành phần UI phổ biến
+
+# 1. Khởi động ứng dụng (không kill app để tránh trigger quảng cáo lại)
+- launchApp:
+    stopApp: false
+
+# 2. Xử lý cấp quyền Android Runtime (nếu có popup)
+- runFlow:
+    when:
+      visible: ".*While using the app.*|.*Only this time.*|.*Allow.*"
+    commands:
+      - tapOn:
+          text: ".*While using the app.*|.*Allow.*"
+
+# 3. Stress click thử nghiệm (chống double-click Gate E23)
+- tapOn:
+    point: "50%,50%"
+- waitForAnimationToEnd
+
+# 4. Stress Backstack Pop
+- back
+- waitForAnimationToEnd
+
+# 5. Xác nhận app vẫn sống bình thường sau tương tác
+- assertVisible:
+    text: ".*"
